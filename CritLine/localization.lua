@@ -4,6 +4,8 @@
 
 if ( GetLocale() == "deDE" ) then
 	CritLine_LocalizeDE();
+elseif ( GetLocale() == "ruRU" ) then
+	CritLine_LocalizeRU();
 elseif ( GetLocale() == "frFR" ) then
 	CritLine_LocalizeFR();
 elseif ( GetLocale() == "zhCN" ) then
