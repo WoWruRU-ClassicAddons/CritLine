@@ -1,5 +1,5 @@
 ## Interface: 11200
-## Title: CritLine 3.1.1
+## Title: CritLine 3.1.2
 ## Author: Sordit (Updated by Bloodmoon)
 ## Notes: List all of your attacks and/or heals displaying normal and crit damage.
 ## Notes-ruRU: Список вашего лучшего исцеления, урона, критического урона.

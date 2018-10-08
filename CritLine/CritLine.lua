@@ -56,7 +56,7 @@ function CritLine_OnEvent(event, arg1)
 	elseif event == "CHAT_MSG_COMBAT_SELF_HITS" then
 		if CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["FilterAttacks"] == "0" then
 			for creaturename, damage in string.gfind(arg1, COMBAT_CRIT)do
-				CritLine_RecordHit(CRIT_TEXT, "CRIT", tonumber(damage), creaturename, DAMAGE_TYPE_NONHEAL)			
+				CritLine_RecordHit(NORMAL_HIT_TEXT, "CRIT", tonumber(damage), creaturename, DAMAGE_TYPE_NONHEAL)			
 			end
 			
 			for creaturename, damage in string.gfind(arg1, COMBAT_HIT) do
@@ -262,14 +262,14 @@ function CritLine_GetSummaryRichText()
 						if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["IsHeal"] == "0" then
 							if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"] == hicrit then
 								rtfAttack = rtfAttack..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]\t"
-								rtfSummaryCrit = "\nCritical:\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
+								rtfSummaryCrit = "\n"..CRITLINE_CRIT..":\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
 							else
 								rtfAttack = rtfAttack..Critline_Color(BODY_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]\t"
 							end
 						else
 							if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"] == hihealcrit then
 								rtfAttack = rtfAttack..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]\t"
-								rtfSummaryCritHeal = "\nCritHeal:\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
+								rtfSummaryCritHeal = "\n"..CRITLINE_CRITHEAL..":\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
 							else
 								rtfAttack = rtfAttack..Critline_Color(BODY_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]\t"
 							end
@@ -283,23 +283,23 @@ function CritLine_GetSummaryRichText()
 							spacer = spacer.."["..mypercent.."%]"
 						end
 						if CritLineData[CritLineRealm][CritLinePlayer]["Data"]["CritPercent"] == nil then
-							rtfSummaryPercent = "\nChance to Crit:\n"..Critline_Color(BODY_TEXT_COLOR, "0").."%"
+							rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0").."%"
 						else
 							mypercentsummary = tonumber( string.format("%.2f", CritLineData[CritLineRealm][CritLinePlayer]["Data"]["CritPercent"] ) )
-							rtfSummaryPercent = "\nChance to Crit:\n"..Critline_Color(BODY_TEXT_COLOR, mypercentsummary).."%"	
+							rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, mypercentsummary).."%"	
 						end
 					else
 						if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["IsHeal"] == "0" then
 							if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"] == highdmg then
 								rtfAttack = rtfAttack..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]"
-								rtfSummaryDmg = "\nNormal:\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
+								rtfSummaryDmg = "\n"..CRITLINE_NORMAL..":\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
 							else
 								rtfAttack = rtfAttack..Critline_Color(BODY_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]"
 							end
 						else
 							if CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"] == hihealdmg then
 								rtfAttack = rtfAttack..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]\t\t\t\t"
-								rtfSummaryHeal = "\nHeal:\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
+								rtfSummaryHeal = "\n"..CRITLINE_HEAL..":\n"..Critline_Color(HEADER_TEXT_COLOR, attacktype).."\n"..Critline_Color(HINT_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."\n"
 							else
 								rtfAttack = rtfAttack..Critline_Color(BODY_TEXT_COLOR, CritLineData[CritLineRealm][CritLinePlayer]["Data"][attacktype][k]["Damage"]).."]"
 							end
@@ -353,19 +353,19 @@ function CritLine_GetSummaryRichText()
 	CritLine_CritChance = Critline_Color(BODY_TEXT_COLOR, mypercentsummary)
 	
 	if rtfSummaryDmg == nil then
-		rtfSummaryDmg = "\nNormal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+		rtfSummaryDmg = "\n"..CRITLINE_NORMAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	end
 	if rtfSummaryCrit == nil then
-		rtfSummaryCrit = "\nCritical:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+		rtfSummaryCrit = "\n"..CRITLINE_CRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	end
 	if rtfSummaryHeal == nil then
-		rtfSummaryHeal = "\nHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+		rtfSummaryHeal = "\n"..CRITLINE_HEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	end
 	if rtfSummaryCritHeal == nil then
-		rtfSummaryCritHeal = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+		rtfSummaryCritHeal = "\n"..CRITLINE_CRITHEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	end
 	if rtfSummaryPercent == nil then
-		rtfSummaryPercent = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+		rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	end
 	
 	rtfSummary = rtfSummaryDmg..rtfSummaryCrit..rtfSummaryHeal..rtfSummaryCritHeal..rtfSummaryPercent
@@ -421,11 +421,11 @@ function CritLine_Init()
 		CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"] = 30
 	end
 	
-	rtfSummaryDmg = "\nNormal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCrit = "\nCritical:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryHeal = "\nHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCritHeal = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryPercent = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryDmg = "\n"..CRITLINE_NORMAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCrit = "\n"..CRITLINE_CRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryHeal = "\n"..CRITLINE_HEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCritHeal = "\n"..CRITLINE_CRITHEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	
 	CritLineButtonPosition = CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"]
 	CritLineButton_UpdatePosition()
@@ -465,11 +465,11 @@ function CritLine_ResetAll()
 	CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"] = 30
 	CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["ToolTip"] = "1"
 	CritLineData[CritLineRealm][CritLinePlayer]["Data"] = {}
-	rtfSummaryDmg = "\nNormal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCrit = "\nCritical:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryHeal = "\nHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCritHeal = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryPercent = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryDmg = "\n"..CRITLINE_NORMAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCrit = "\n"..CRITLINE_CRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryHeal = "\n"..CRITLINE_HEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCritHeal = "\n"..CRITLINE_CRITHEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	CritLine_GetSummaryRichText()
 	CritLineButtonPosition = CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"]
 	CritLineButton_UpdatePosition()
@@ -491,11 +491,11 @@ function CritLine_Reset()
 	CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"] = 30
 	CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["ToolTip"] = "1"
 	CritLineData[CritLineRealm][CritLinePlayer]["Data"] = {}
-	rtfSummaryDmg = "\nNormal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCrit = "\nCritical:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryHeal = "\nHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryCritHeal = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
-	rtfSummaryPercent = "\nCritHeal:\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryDmg = "\n"..CRITLINE_NORMAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCrit = "\n"..CRITLINE_CRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryHeal = "\n"..CRITLINE_HEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryCritHeal = "\n"..CRITLINE_CRITHEAL..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
+	rtfSummaryPercent = "\n"..CRITLINE_CHANCECRIT..":\n"..Critline_Color(BODY_TEXT_COLOR, "0\n")
 	CritLine_GetSummaryRichText()
 	CritLineButtonPosition = CritLineData[CritLineRealm][CritLinePlayer]["Settings"]["CritLineButtonPosition"]
 	CritLineButton_UpdatePosition()
