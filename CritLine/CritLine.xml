@@ -1,11 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-	<Script file="localizationEN.lua"></Script>
-	<Script file="localizationRU.lua"></Script>
-	<Script file="localizationDE.lua"></Script>
-	<Script file="localizationFR.lua"></Script>
 	<Script file="localization.lua"></Script>
 	<Script file="CritLine.lua"></Script>
-
+	
 	<Frame name="CritLineFrame" parent="UIParent" frameStrata="HIGH"  hidden="true" toplevel="true" enableMouse="true" movable="true">
 		<Size>
 			<AbsDimension x="450" y="475"/>
@@ -42,66 +38,66 @@
 		</Layers>
 		<Frames>
 			<ScrollFrame name="CritLineSummaryScrollFrame" inherits="UIPanelScrollFrameTemplate">
-								<Size>
-									<AbsDimension x="415" y="375"/>
-								</Size>
-								<Anchors>
-									<Anchor point="TOPLEFT">
-										<Offset>
-											<AbsDimension x="5" y="-30"/>
-										</Offset>
-									</Anchor>
-								</Anchors>
-								<ScrollChild>
-									<Frame name="CritLineSummaryScrollChildFrame" enableMouse="true">
-										<Size>
-											<AbsDimension x="300" y="99"/>
-										</Size>
-										<Anchors>
-											<Anchor point="TOPLEFT">
-												<Offset>
-													<AbsDimension x="0" y="0"/>
-												</Offset>
-											</Anchor>
-										</Anchors>
-										<Layers>
-											<Layer level="OVERLAY">
-											<FontString name="CritLineText2" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="TOP" nonspacewrap="true" text="" enableMouse="true" autoFocus="true">
-												<Size>
-													<AbsDimension x="645" y="2000"/>
-												</Size>
-												<Anchors>
-													<Anchor point="TOPLEFT">
-														<Offset>
-															<AbsDimension x="10" y="-25"/>
-														</Offset>
-													</Anchor>
-												</Anchors>
-												<Scripts>
-													<OnTextChanged>
-														ScrollingEdit_OnTextChanged(CritLineSummaryScrollFrame);
-													</OnTextChanged>
-													<OnCursorChanged>
-														ScrollingEdit_OnCursorChanged(arg1, arg2-10, arg3, arg4);
-													</OnCursorChanged>
-													<OnUpdate>
-														ScrollingEdit_OnUpdate(CritLineSummaryScrollFrame);
-													</OnUpdate>
-													<OnTabPressed>
-													</OnTabPressed>
-													<OnEscapePressed>
-														this:ClearFocus();
-													</OnEscapePressed>
-													<OnClick>
-													</OnClick>
-												</Scripts>
-											</FontString>
-											</Layer>
-										</Layers>
-									</Frame>
-								</ScrollChild>
-							</ScrollFrame>
-		<Button name="CritLineButton2" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="Minimize">
+				<Size>
+					<AbsDimension x="415" y="375"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<Frame name="CritLineSummaryScrollChildFrame" enableMouse="true">
+						<Size>
+							<AbsDimension x="300" y="99"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="CritLineText2" inherits="GameFontNormalSmall" justifyH="LEFT" justifyV="TOP" nonspacewrap="true" text="" enableMouse="true" autoFocus="true">
+									<Size>
+										<AbsDimension x="645" y="2000"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset>
+												<AbsDimension x="10" y="-25"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Scripts>
+										<OnTextChanged>
+											ScrollingEdit_OnTextChanged(CritLineSummaryScrollFrame);
+										</OnTextChanged>
+										<OnCursorChanged>
+											ScrollingEdit_OnCursorChanged(arg1, arg2-10, arg3, arg4);
+										</OnCursorChanged>
+										<OnUpdate>
+											ScrollingEdit_OnUpdate(CritLineSummaryScrollFrame);
+										</OnUpdate>
+										<OnTabPressed>
+										</OnTabPressed>
+										<OnEscapePressed>
+											this:ClearFocus();
+										</OnEscapePressed>
+										<OnClick>
+										</OnClick>
+									</Scripts>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>
+			<Button name="CritLineButton_Close" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="CLOSE">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset>
@@ -115,7 +111,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="CritLineButton3" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="Options">
+			<Button name="CritLineButton_Options" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="CRITLINE_OPTIONS">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset>
@@ -129,7 +125,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="CritLineButton4" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="Show Summary">
+			<Button name="CritLineButton_Summary" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="CRITLINE_SHOW_SUMMARY">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset>
@@ -163,7 +159,7 @@
 			</OnMouseUp>
 		</Scripts>
 	</Frame>
-
+	
 	<Frame name="CritLineFrameSummary" enableMouse="true" hidden="true" movable="TRUE">
 		<Size>
 			<AbsDimension x="160" y="280"/>
@@ -215,7 +211,7 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<Button name="CritLineButtonSummaryHide" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="Hide Summary">
+			<Button name="CritLineButtonSummaryHide" inherits="GameMenuButtonTemplate" justifyH="CENTER" text="CRITLINE_HIDE_SUMMARY">
 				<Anchors>
 					<Anchor point="BOTTOM">
 						<Offset>
@@ -332,58 +328,65 @@
 			<AbsInset bottom="0" left="0" right="-100" top="0"></AbsInset>
 		</HitRectInsets>
 		<Scripts>
-			<OnClick>CritLine_SettingsOptionButton_OnClick(this:GetID());
+			<OnClick>
+				CritLine_SettingsOptionButton_OnClick(this:GetID());
 					if ( this:GetChecked() ) then
-						PlaySound("igMainMenuOptionCheckBoxOff");
+					PlaySound("igMainMenuOptionCheckBoxOff");
 					else
-						PlaySound("igMainMenuOptionCheckBoxOn");
-					end</OnClick>
-			<OnEnter>if ( this.tooltipText ) then
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
-					end</OnEnter>
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				end
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide()
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<Button name="CritLine_SettingsButtonTemplate" inherits="GameMenuButtonTemplate" toplevel="true" virtual="true">
+	    <Size>
+			<AbsDimension x="140" y="20"/>
+		</Size>
+	    <Scripts>
+			<OnClick>
+				CritLine_ResetAll();
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+				end					
+			</OnEnter>
 			<OnLeave>GameTooltip:Hide();</OnLeave>
 		</Scripts>
-		FFD300
-	</CheckButton>
-	  <Button name="CritLine_SettingsButtonTemplate" inherits="GameMenuButtonTemplate" toplevel="true" virtual="true">
-	    <Size>
-	      <AbsDimension x="140" y="20"/>
-	    </Size>
-	    <Scripts>
-	      <OnClick>
-		CritLine_ResetAll();
-	      </OnClick>
-			<OnEnter>if ( this.tooltipText ) then
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
-					end					
-					</OnEnter>
-			<OnLeave>GameTooltip:Hide();</OnLeave>
-	    </Scripts>
 	    <NormalText inherits="GameFontNormal"/>
 	    <HighlightText inherits="GameFontHighlight"/>
 	    <DisabledText inherits="GameFontDisable"/>
-	  </Button>
-	  <Button name="CritLine_SettingsButtonTemplate1" inherits="GameMenuButtonTemplate" toplevel="true" virtual="true">
+	</Button>
+	<Button name="CritLine_SettingsButtonTemplate1" inherits="GameMenuButtonTemplate" toplevel="true" virtual="true">
 	    <Size>
-	      <AbsDimension x="140" y="20"/>
-	    </Size>
+			<AbsDimension x="140" y="20"/>
+		</Size>
 	    <Scripts>
-	      <OnClick>
-		CritLine_Reset();
-	      </OnClick>
-			<OnEnter>if ( this.tooltipText ) then
-						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-						GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
-					end					
-					</OnEnter>
+			<OnClick>
+				CritLine_Reset();
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+				end					
+			</OnEnter>
 			<OnLeave>GameTooltip:Hide();</OnLeave>
-	    </Scripts>
+		</Scripts>
 	    <NormalText inherits="GameFontNormal"/>
 	    <HighlightText inherits="GameFontHighlight"/>
 	    <DisabledText inherits="GameFontDisable"/>
-	  </Button>
+	</Button>
 	<Frame name="CritLineSettingsFrame" enableMouse="true" frameStrata="FULLSCREEN" hidden="true" movable="true" parent="UIParent" toplevel="true">
 		<Size>
 			<AbsDimension x="325" y="360"></AbsDimension>
@@ -504,25 +507,25 @@
 					</Anchor>
 				</Anchors>
 			</CheckButton>
-			      <Button name="$parent_ResetAll" inherits="CritLine_SettingsButtonTemplate" id="9">
+			<Button name="$parent_ResetAll" inherits="CritLine_SettingsButtonTemplate" id="9">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="CritLineSettingsFrame">
-				    <Offset>
-				      <AbsDimension x="100" y="40"/>
-				    </Offset>
-				  </Anchor>
+						<Offset>
+							<AbsDimension x="100" y="40"/>
+						</Offset>
+					</Anchor>
 				</Anchors>
-			      </Button>
-			      <Button name="$parent_Reset" inherits="CritLine_SettingsButtonTemplate1" id="10">
+			</Button>
+			<Button name="$parent_Reset" inherits="CritLine_SettingsButtonTemplate1" id="10">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="CritLineSettingsFrame">
-				    <Offset>
-				      <AbsDimension x="100" y="60"/>
-				    </Offset>
-				  </Anchor>
+						<Offset>
+							<AbsDimension x="100" y="60"/>
+						</Offset>
+					</Anchor>
 				</Anchors>
-			      </Button>
-			      <Slider name="CritLineSliderButtonPos" inherits="OptionsSliderTemplate">
+			</Button>
+			<Slider name="CritLineSliderButtonPos" inherits="OptionsSliderTemplate">
 				<Size>
 					<AbsDimension x="220" y="16"/>
 				</Size>
@@ -535,7 +538,7 @@
 				</Anchors>
 				<Scripts>
 					<OnLoad>
-						getglobal(this:GetName().."Text"):SetText("Button Position");
+						getglobal(this:GetName().."Text"):SetText(CRITLINE_BUTTON_POSITION);
 						getglobal(this:GetName().."High"):SetText();
 						getglobal(this:GetName().."Low"):SetText();
 						CritLineSliderButtonPos:SetMinMaxValues(0,360);
